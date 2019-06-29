@@ -1,5 +1,6 @@
 package com.example.terencepan.spring.batch.reclassetl.job;
 
+import com.example.terencepan.spring.batch.reclassetl.writers.ReclassWriter;
 import com.example.terencepan.spring.batch.reclassetl.model.ReclassDto;
 import com.example.terencepan.spring.batch.reclassetl.model.ReclassDtoRowMapper;
 import com.example.terencepan.spring.batch.reclassetl.model.ReclassItem;
@@ -23,6 +24,8 @@ import org.springframework.context.annotation.Configuration;
 
 import javax.sql.DataSource;
 import java.time.LocalDateTime;
+
+import static com.example.terencepan.spring.batch.reclassetl.tasks.ReclassTasks.*;
 
 @Configuration
 public class ReclassJobConfiguration {
@@ -156,7 +159,7 @@ public class ReclassJobConfiguration {
             "       --AND PROGRAM_UNIT_CODE = 'PV'\n" +
             "       AND SUBEVENT_QRY.AMOUNT >= 0\n" +
             "       AND FISCAL_YEAR_NAME IN ('2016', '2017')\n" +
-            "       AND rownum < 101";
+            "       AND rownum < 11";
 
     //Kinda like the extract
     @Bean
@@ -192,8 +195,8 @@ public class ReclassJobConfiguration {
 
     //Kinda like the load
     @Bean
-    public ItemWriter<ReclassDto> itemWriter(){
-
+    public ReclassWriter itemWriter(ReclassItem reclassItem){
+        return new ReclassWriter();
     }
 
     @Bean

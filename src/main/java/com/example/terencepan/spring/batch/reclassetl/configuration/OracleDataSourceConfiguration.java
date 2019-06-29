@@ -2,7 +2,6 @@ package com.example.terencepan.spring.batch.reclassetl.configuration;
 
 import javax.validation.constraints.NotNull;
 
-import com.example.terencepan.spring.batch.reclassetl.job.ReclassJobConfiguration;
 import oracle.jdbc.pool.OracleDataSource;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -20,10 +19,10 @@ import java.sql.SQLException;
 
 @Configuration
 @ConfigurationProperties("oracle")
-public class DataSourceConfiguration {
+public class OracleDataSourceConfiguration {
 
     private static Log logger
-            = LogFactory.getLog(DataSourceConfiguration.class);
+            = LogFactory.getLog(OracleDataSourceConfiguration.class);
 
     @NotNull
     private String element;
